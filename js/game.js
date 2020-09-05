@@ -83,6 +83,7 @@ class Game{
                  if (frameCount % 20 === 0) {
                      fruits = createSprite(random(100, 1000), 0, 100, 100);
                      fruits.velocityY = 6;
+                     fruits.lifetime = 590
                      var rand = Math.round(random(1,5));
                      switch(rand){
                          case 1: fruits.addImage("fruit1",fruit1_img);
@@ -102,7 +103,7 @@ class Game{
                  
                   if (player.index !== null) {
                      //fill code here, to destroy the objects. (Use the one in the class project 39)
-                     // add the condition to calculate the score. and use update ti update the values in the database.
+                     // add the condition to calculate the score. and use update to update the values in the database.
 
                      for(var fruit = 0; fruit < fruitGroup.length;fruit ++){
                          if(fruitGroup[fruit].isTouching(player1)){
@@ -117,14 +118,17 @@ class Game{
                         }
                      }
                   }
-                
 
-         
-         
-        
-         
-
-    }
+                  if(player.score >= 150){
+                      gameState = 2;
+                      swal({
+                          title: "Well Done!!",
+                          text: "Well played, you finished the Game !!",
+                          icon: "success",
+                          confirmButtonText: "Ok"
+                      })
+                  }
+        }
 
     end(){
        console.log("Game Ended");
